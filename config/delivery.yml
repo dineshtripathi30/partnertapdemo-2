@@ -26,6 +26,8 @@ spec:
           appliveview-sample/app-live-view-appflavours-boot
           appliveview-sample/app-live-view-systemproperties
         developer.conventions/target-containers: workload
+        kubectl.kubernetes.io/last-applied-configuration: |
+          {"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"annotations":{},"labels":{"app.kubernetes.io/part-of":"partnertapdemo","apps.tanzu.vmware.com/has-tests":"true","apps.tanzu.vmware.com/workload-type":"web"},"name":"partnertapdemo","namespace":"default"},"spec":{"env":[{"name":"SPRING_PROFILES_ACTIVE","value":"springdemo"}],"params":[{"name":"annotations","value":{"autoscaling.knative.dev/minScale":"1"}},{"name":"gitops_repository","value":"https://github.com/dineshtripathi30/partnertapdemo-2"},{"name":"gitops_branch","value":"main"},{"name":"gitops_commit_message","value":"deliverable is here"}],"resources":{"limits":{"cpu":"2000m","memory":"1Gi"},"requests":{"cpu":"100m","memory":"100Mi"}},"serviceAccountName":"default","source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/dineshtripathi30/partnertapdemo"}}}}
       labels:
         app.kubernetes.io/component: run
         app.kubernetes.io/part-of: partnertapdemo
@@ -44,7 +46,7 @@ spec:
           value: springdemo
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.endpoint.health.show-details=always -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include=* -Dmanagement.health.probes.enabled="true" -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: tanzudemoreg.azurecr.io/tap11/build-service/partnertapdemo-default@sha256:d96599c9ba0045292a6ec1f798c69a76e6e934ae8c97e11bf13f0c79402d1d70
+        image: tanzudemoreg.azurecr.io/tap11/build-service/partnertapdemo-default@sha256:27d71c7852d4d81145c6faaf889bdadf2a23e595c1ee7554c055ecc0800d8e40
         livenessProbe:
           httpGet:
             path: /livez
